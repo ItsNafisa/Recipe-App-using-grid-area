@@ -1,0 +1,451 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #ff6b6b;
+    --primary-hover: #ee5253;
+    --bg-color: #f8f9fa;
+    --card-bg: #ffffff;
+    --text-color: #2d3436;
+    --text-muted: #636e72;
+    --border-color: #edf2f7;
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    min-height: 100vh;
+}
+
+/* Container Structure */
+.container {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px 15px;
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    grid-template-areas: 
+        "header header"
+        "nav main"
+        "footer footer";
+    gap: 25px;
+}
+
+/* Responsive Container Widths */
+@media(min-width: 768px) { .container { width: 750px; } }
+@media(min-width: 992px) { .container { width: 970px; } }
+@media(min-width: 1200px) { .container { width: 1170px; } }
+
+/* Header Styling */
+header {
+    grid-area: header;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--card-bg);
+    padding: 15px 25px;
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+}
+
+header .logo {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+header .logo span {
+    color: var(--primary-color);
+}
+
+header .search {
+    position: relative;
+    width: 320px;
+}
+
+header .search input {
+    width: 100%;
+    height: 42px;
+    padding: 0 18px;
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    background-color: #f1f3f5;
+    outline: none;
+    font-family: inherit;
+    transition: all 0.3s ease;
+}
+
+header .search input:focus {
+    background-color: #fff;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.15);
+}
+
+.cart-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #fff0f0;
+    color: var(--primary-color);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.cart-btn .badge {
+    background: var(--primary-color);
+    color: #fff;
+    border-radius: 50%;
+    padding: 2px 7px;
+    font-size: 0.75rem;
+}
+
+/* Sidebar Navigation */
+nav {
+    grid-area: nav;
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    align-self: start;
+}
+
+nav .nav-title {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    margin-bottom: 15px;
+}
+
+nav ul {
+    list-style: none;
+    max-height: 350px; 
+    overflow-y: auto;  
+    padding-right: 5px; 
+}
+
+nav ul::-webkit-scrollbar {
+    width: 6px;
+}
+
+nav ul::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+nav ul::-webkit-scrollbar-thumb {
+    background-color: var(--text-muted);
+    border-radius: 10px;
+    opacity: 0.5;
+}
+
+nav ul::-webkit-scrollbar-thumb:hover {
+    background-color: var(--primary-color);
+}
+/* ----------------------------- */
+
+nav ul li {
+    margin-bottom: 8px;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+}
+
+nav ul li a {
+    display: block;
+    padding: 10px 14px;
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+nav ul li:hover, nav ul li.active {
+    background-color: #fff0f0;
+}
+
+nav ul li:hover a, nav ul li.active a {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+/* Main Content & Product Cards */
+main {
+    grid-area: main;
+}
+
+main .boxs {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.box {
+    background: var(--card-bg);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.box .img-placeholder {
+    height: 150px;
+    background: #ffeaa7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.5rem;
+}
+
+.box .card-content {
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.box .tag {
+    align-self: flex-start;
+    background: #eccc68;
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+}
+
+.box h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text-color);
+}
+
+.box p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+    margin-bottom: 15px;
+    flex-grow: 1;
+}
+
+.box .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-top: 1px solid var(--border-color);
+    padding-top: 10px;
+}
+
+.box .card-footer .time {
+    color: var(--text-muted);
+}
+
+/* Footer Styling */
+footer {
+    grid-area: footer;
+    background: var(--card-bg);
+    padding: 20px 25px;
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    margin-top: 10px;
+}
+
+footer .content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* Mobile Responsiveness for Grid Layout */
+@media(max-width: 767px) {
+    .container {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "header"
+            "nav"
+            "main"
+            "footer";
+    }
+
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    header .search {
+        width: 100%;
+    }
+}
+/* ======================================= */
+.recipe-card {
+    background: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.recipe-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.card-image-wrapper {
+    position: relative;
+    height: 180px;
+    width: 100%;
+}
+
+.card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cuisine-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(4px);
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+.card-content {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.card-tags {
+    display: flex;
+    gap: 6px;
+}
+
+.tag-pill {
+    background: #f0f4f8;
+    color: #4a5568;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 12px;
+}
+
+.card-title {
+    font-size: 18px;
+    margin: 0;
+    color: #2d3748;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    background: #f8fafc;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.info-icon {
+    font-size: 16px;
+}
+
+.info-label {
+    display: block;
+    font-size: 10px;
+    color: #718096;
+}
+
+.info-val {
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    color: #2d3748;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 8px;
+    border-top: 1px solid #edf2f7;
+}
+
+.rating-box {
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.reviews {
+    color: #a0aec0;
+    font-weight: normal;
+}
+
+.view-btn {
+    background: #ff6b6b;
+    color: #fff;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.2s ease;
+}
+
+.view-btn:hover {
+    background: #ee5253;
+}
+/* تأثير الهيكل الرمادي المتحرك لحين تحميل الصورة */
+.loading-skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s infinite;
+}
+
+@keyframes skeleton-loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* إخفاء الصورة السابقة حتى تكتمل استجابة المتصفح */
+.card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.3s ease-in-out;
+}
